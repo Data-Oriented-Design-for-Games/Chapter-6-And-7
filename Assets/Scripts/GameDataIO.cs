@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Survivor
             using (FileStream fs = File.Create(fileName))
             using (BinaryWriter bw = new BinaryWriter(fs))
             {
-                int version = 1;
+                int version = 2;
                 bw.Write(version);
 
                 bw.Write(gameData.InGame);
@@ -60,7 +61,8 @@ namespace Survivor
                 {
                     int version = br.ReadInt32();
 
-                    gameData.InGame = br.ReadBoolean();
+                    if (version >= 2)
+                        gameData.InGame = br.ReadBoolean();
 
                     int numEnemies = br.ReadInt32();
                     for (int i = 0; i < numEnemies; i++)
