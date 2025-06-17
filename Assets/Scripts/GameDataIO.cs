@@ -19,6 +19,8 @@ namespace Survivor
                 int version = 1;
                 bw.Write(version);
 
+                bw.Write(gameData.InGame);
+
                 bw.Write(balance.NumEnemies);
                 for (int i = 0; i < balance.NumEnemies; i++)
                 {
@@ -58,6 +60,8 @@ namespace Survivor
                 {
                     int version = br.ReadInt32();
 
+                    gameData.InGame = br.ReadBoolean();
+
                     int numEnemies = br.ReadInt32();
                     for (int i = 0; i < numEnemies; i++)
                     {
@@ -90,8 +94,19 @@ namespace Survivor
 
         public static bool SaveGameExists()
         {
-            string fileName = Application.persistentDataPath + "/DODSurvivor/save.dat";
-            return File.Exists(fileName);
+            bool inGame = false;
+            string fileName = Application.persistentDataPath + "/DODSurvivor/gamedata.dat";
+            if (File.Exists(fileName))
+            {
+                using (FileStream stream = File.Open(fileName, FileMode.Open))
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    int version = br.ReadInt32();
+
+                    inGame = br.ReadBoolean();
+                }
+            }
+            return inGame;
         }
     }
 }

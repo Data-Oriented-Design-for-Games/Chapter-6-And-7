@@ -57,7 +57,7 @@ namespace Survivor
         public void StartGame()
         {
             float screenRatio = (float)Screen.width / (float)Screen.height;
-            Logic.StartGame(metaData, gameData, balance, m_mainCamera.orthographicSize, screenRatio);
+            Logic.StartGame(gameData, balance, m_mainCamera.orthographicSize, screenRatio);
         }
 
         public void Show()
@@ -133,6 +133,7 @@ mousePosition = Input.GetTouch(0).position;
         void gameOver()
         {
             Game.Instance.SetMenuState(MENU_STATE.GAME_OVER);
+            GameDataIO.Save(gameData, balance);
             MetaDataIO.Save(metaData);
             hideUI();
         }

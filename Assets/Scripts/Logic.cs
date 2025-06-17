@@ -17,8 +17,10 @@ namespace Survivor
             metaData.MenuState = MENU_STATE.NONE;
         }
 
-        public static void StartGame(MetaData metaData, GameData gameData, Balance balance, float cameraSize, float screenRatio)
+        public static void StartGame(GameData gameData, Balance balance, float cameraSize, float screenRatio)
         {
+            gameData.InGame = true;
+
             gameData.PlayerPosition = Vector2.zero;
             gameData.PlayerDirection = Vector2.zero;
 
@@ -138,6 +140,9 @@ namespace Survivor
                 {
                     if (gameData.GameTime > metaData.BestTime)
                         metaData.BestTime = gameData.GameTime;
+
+                    gameData.InGame = false;
+
                     return true;
                 }
             return false;

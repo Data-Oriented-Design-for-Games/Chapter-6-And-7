@@ -443,6 +443,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Board: {fileID: 574646400}
   MainCamera: {fileID: 519420031}
+  Balance:
+    NumEnemies: 50
+    EnemyVelocityMin: 0.5
+    EnemyVelocityMax: 0.5
+    PlayerVelocity: 1.5
+    MinCollisionDistance: 0.1
 --- !u!4 &1695226660
 Transform:
   m_ObjectHideFlags: 0

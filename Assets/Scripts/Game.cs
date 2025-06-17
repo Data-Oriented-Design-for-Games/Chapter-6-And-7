@@ -9,6 +9,7 @@ namespace Survivor
     {
         public Board Board;
         public Camera MainCamera;
+        public Balance Balance;
 
         MainMenuVisual m_mainMenuVisual;
         GameOverVisual m_gameOverVisual;
@@ -16,7 +17,6 @@ namespace Survivor
 
         GameData m_gameData = new GameData();
         MetaData m_metaData = new MetaData();
-        Balance m_balance = new Balance();
 
         int m_screenShotIdx = 0;
 
@@ -27,16 +27,16 @@ namespace Survivor
             m_gameOverVisual = AssetManager.Instance.GetGameOverVisual();
             m_pauseMenuVisual = AssetManager.Instance.GetPauseMenuVisual();
 
+            MetaDataIO.Load(m_metaData);
+
             m_mainMenuVisual.Init(m_metaData);
             m_gameOverVisual.Init(m_metaData, m_gameData);
             m_pauseMenuVisual.Init();
 
-            m_balance.LoadBalance();
-            Logic.AllocateGameData(m_gameData, m_balance);
-            Board.Init(m_metaData, m_gameData, m_balance, MainCamera);
+            Logic.AllocateGameData(m_gameData, Balance);
+            Board.Init(m_metaData, m_gameData, Balance, MainCamera);
 
             Logic.Init(m_metaData);
-            GameDataIO.Load(m_gameData);
 
             SetMenuState(MENU_STATE.MAIN_MENU);
         }

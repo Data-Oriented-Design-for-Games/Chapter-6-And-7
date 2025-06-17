@@ -22,7 +22,7 @@ public class AssetManager : Singleton<AssetManager>
 
     public GameObject GetPlayerGameObject(Transform enemyParent)
     {
-        return Instantiate(m_enemyPrefab, enemyParent);
+        return Instantiate(m_playerPrefab, enemyParent);
     }
 
     public GameObject GetEnemyGameObject(Transform enemyParent)
