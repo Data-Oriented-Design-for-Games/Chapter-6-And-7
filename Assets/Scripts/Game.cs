@@ -11,9 +11,9 @@ namespace Survivor
         public Camera MainCamera;
         public Balance Balance;
 
-        MainMenuVisual m_mainMenuVisual;
-        GameOverVisual m_gameOverVisual;
-        PauseMenuVisual m_pauseMenuVisual;
+        MainMenuVisual m_mainMenuVisual = new MainMenuVisual();
+        GameOverVisual m_gameOverVisual = new GameOverVisual();
+        PauseMenuVisual m_pauseMenuVisual = new PauseMenuVisual();
 
         GameData m_gameData = new GameData();
         MetaData m_metaData = new MetaData();
@@ -23,10 +23,6 @@ namespace Survivor
         // Start is called before the first frame update
         void Start()
         {
-            m_mainMenuVisual = AssetManager.Instance.GetMainMenuVisual();
-            m_gameOverVisual = AssetManager.Instance.GetGameOverVisual();
-            m_pauseMenuVisual = AssetManager.Instance.GetPauseMenuVisual();
-
             MetaDataIO.Load(m_metaData);
 
             m_mainMenuVisual.Init(m_metaData);

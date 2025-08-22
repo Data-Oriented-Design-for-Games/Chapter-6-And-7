@@ -14,7 +14,7 @@ namespace Survivor
         public Button ContinueButton;
     }
 
-    public class MainMenuVisual : MonoBehaviour
+    public class MainMenuVisual
     {
         MainMenuGUI m_mainMenuGUI;
 
@@ -27,6 +27,8 @@ namespace Survivor
             m_mainMenuGUI = new MainMenuGUI();
             m_mainMenuGUI.UI = AssetManager.Instance.GetMainMenuUI();
             m_mainMenuGUI.UI.SetActive(false);
+
+            GameObject GO = MonoBehaviour.Instantiate(m_mainMenuGUI.UI);
 
             GUIRef guiRef = m_mainMenuGUI.UI.GetComponent<GUIRef>();
             m_mainMenuGUI.BestTime = guiRef.GetTextGUI("BestTime");

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Survivor
 {
-    public class PauseMenuVisual : MonoBehaviour
+    public class PauseMenuVisual
     {
         GameObject m_UI;
         public void Init()
